@@ -83,11 +83,11 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'root',
         'PASSOWRD': 'root',
-        'HOST': '',
-        'PORT': 3306,
-        'CLIENT_ENCODING': 'UTF8',
-        'default_transaction_isolation': 'read committed',
-        'USE_TZ': 'UTC'
+        #'HOST': '',
+        #'PORT': 3306,
+        #'CLIENT_ENCODING': 'UTF8',
+        #'default_transaction_isolation': 'read committed',
+        #'USE_TZ': 'UTC'
         #'ENGINE': 'django.db.backends.sqlite3',
         #'NAME': BASE_DIR / 'db.sqlite3',
     }
