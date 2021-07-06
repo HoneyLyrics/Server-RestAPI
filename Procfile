@@ -1,1 +1,1 @@
-web: gunicorn HoneyLyrics.wsgi
+web: gunicorn Server_RestAPI.wsgi
