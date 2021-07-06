@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-%%v4@wgezj3q40)cs__#3$h$=y5n(4eyzk5xit1-(15(0bkm(9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.43.25', '192.168.0.89', '192.168.0.4']
 
 
 # Application definition
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'lyrics.apps.LyricsConfig'
+
 ]
 
 MIDDLEWARE = [
