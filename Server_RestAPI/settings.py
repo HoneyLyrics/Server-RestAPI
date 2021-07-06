@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-%%v4@wgezj3q40)cs__#3$h$=y5n(4eyzk5xit1-(15(0bkm(9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.43.25', '192.168.0.89', '192.168.0.4']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.43.25', '192.168.0.89', '192.168.0.4','honeylyrics.herokuapp.com']
 
 
 # Application definition
@@ -84,13 +84,10 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'root',
         'PASSOWRD': 'root',
-        #'HOST': '',
+        'HOST': 'zbkqhoduvlzvps:1aebcd884b28e1eba6c0b89d45c39f9ca5315dbea430579549517fd32e6e7719@ec2-54-91-1eba6c0b89d45c39f9ca5315dbea43057954951188-254.compute-1.amazonaws.com:5432/ddnem67cdfk0if',
         'PORT': 5432,
-        #'CLIENT_ENCODING': 'UTF8',
-        #'default_transaction_isolation': 'read committed',
-        #'USE_TZ': 'UTC'
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'CLIENT_ENCODING': 'UTF8',
+        'USE_TZ': 'UTC'
     }
 }
 
