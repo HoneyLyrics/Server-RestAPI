@@ -28,8 +28,10 @@ SECRET_KEY = 'django-insecure-%%v4@wgezj3q40)cs__#3$h$=y5n(4eyzk5xit1-(15(0bkm(9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.43.25', '192.168.0.89', '192.168.0.4','honeylyrics.herokuapp.com']
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.43.25', '192.168.0.89', '192.168.0.4','honeylyrics.herokuapp.com', 'honey-lyrics.web.app']
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = ['https://honey-lyrics.web.app']
 
 # Application definition
 
@@ -40,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lyrics.apps.LyricsConfig'
+    'lyrics.apps.LyricsConfig',
+    'corsheaders'
 
 ]
 
@@ -52,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Server_RestAPI.urls'
