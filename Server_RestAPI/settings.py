@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lyrics.apps.LyricsConfig'
+    'lyrics.apps.LyricsConfig',
+    'common.apps.CommonConfig'
 
 ]
 
