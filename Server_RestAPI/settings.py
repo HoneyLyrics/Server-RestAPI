@@ -15,6 +15,7 @@ import django_heroku
 import psycopg2
 import os
 import dj_database_url
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -59,7 +60,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Server_RestAPI.urls'
-
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         #'rest_framework.permissions.IsAuthenticated',
@@ -75,9 +75,6 @@ REST_FRAMEWORK = {
     #'EXCEPTION_HANDLER': 'my_project.my_app.utils.custom_exception_handler'
 }
 
-
-
-    
 
 TEMPLATES = [
     {
@@ -168,9 +165,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SIMPLE_JWT = {
-    'ROTATE_REFRESH_TOKENS': True,
-}
+
 
 #django_heroku.settings(locals())
 #DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
