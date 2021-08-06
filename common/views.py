@@ -48,17 +48,16 @@ class LoginView(GenericAPIView):
             password = data.get('password','')
             user = auth.authenticate(username=username, password=password)
             if user:
+                # TODO change SECRET KEY
                 auth_token = jwt.encode(
                     {'username': username}, settings.SECRET_KEY, algorithm="HS256")
                 serializers = UserSerializer(user)
                 data = {'username': serializers.data.get('username')}
                 response = Response(data, status=status.HTTP_200_OK)
-                response['cookie'] = {'acess_token':auth_token}
-                #data = json.dumps(data, ensure_ascii=False).encode('utf-8')
+                response.set_cookie('access_token',auth_token)
                 return response
             return Response({'username': username, 'error': 'wrong password'}, status=status.HTTP_401_UNAUTHORIZED)
         except Exception as e:
-            print("ERRRRRRRRRRRRRRRRRRROR")
             data = json.dumps({'error': str(e)}, ensure_ascii=False).encode('utf-8')
             return Response(data, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
