@@ -17,8 +17,6 @@ import json
 import jwt
 
 
-
-
 # Create your views here.
 class RegisterView(GenericAPIView):
     """ Create Register by Post method
@@ -84,7 +82,22 @@ class Logout(GenericAPIView):
             return Response(str(e), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-class Check(View):
+class Check(GenericAPIView):
     """
+    Check by Post method
+        returns:
+            HTTP Response
     """
-    pass
+    def get(self, request):
+        try:
+            if request.COOKIES:
+                session_id = request.headers['Cookie'].split('=')[1]
+                data = jwt.decode(session_id, settings.SECRET_KEY,
+                                  algorithm="HS256")
+                return Response(data, status=status.HTTP_200_OK)
+            else:
+                data = {'error':'unauthorized error'}
+                return Response(data, status=status.HTTP_401_UNAUTHORIZED)
+        except Exception as e:
+            data = json.dumps({'error': str(e)}, ensure_ascii=False).encode('utf-8')
+            return Response(str(e), status=status.HTTP_500_INTERNAL_SERVER_ERROR)
