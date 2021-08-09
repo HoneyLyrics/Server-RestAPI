@@ -15,6 +15,7 @@ import django_heroku
 import psycopg2
 import os
 import dj_database_url
+from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,7 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lyrics.apps.LyricsConfig',
+<<<<<<< HEAD
     'corsheaders'
+=======
+    'common.apps.CommonConfig',
+    'rest_framework',
+    'corsheaders',
+>>>>>>> develop
 
 ]
 
@@ -55,10 +62,29 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+<<<<<<< HEAD
     'corsheaders.middleware.CorsMiddleware',
+=======
+    'corsheaders.middleware.CorsMiddleware', # Note that this needs to be placed above CommonMiddleware
+>>>>>>> develop
 ]
 
 ROOT_URLCONF = 'Server_RestAPI.urls'
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        #'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAdminUser',
+
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    #'EXCEPTION_HANDLER': 'my_project.my_app.utils.custom_exception_handler'
+}
+
 
 TEMPLATES = [
     {
@@ -81,19 +107,27 @@ WSGI_APPLICATION = 'Server_RestAPI.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'root',
-        'PASSOWRD': 'root',
-        'HOST': 'zbkqhoduvlzvps:1aebcd884b28e1eba6c0b89d45c39f9ca5315dbea430579549517fd32e6e7719@ec2-54-91-1eba6c0b89d45c39f9ca5315dbea43057954951188-254.compute-1.amazonaws.com:5432/ddnem67cdfk0if',
-        'PORT': 5432,
-        'CLIENT_ENCODING': 'UTF8',
-        'USE_TZ': 'UTC'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         # 'ENGINE': 'django.db.backends.postgresql',
+#         # 'NAME': 'postgres',
+#         # 'USER': 'root',
+#         # 'PASSOWRD': 'root',
+#         # 'HOST': 'zbkqhoduvlzvps:1aebcd884b28e1eba6c0b89d45c39f9ca5315dbea430579549517fd32e6e7719@ec2-54-91-1eba6c0b89d45c39f9ca5315dbea43057954951188-254.compute-1.amazonaws.com:5432/ddnem67cdfk0if',
+#         # 'PORT': 5432,
+#         # 'CLIENT_ENCODING': 'UTF8',
+#         # 'USE_TZ': 'UTC'
+#     }
+# }
 
 
 # Password validation
@@ -134,10 +168,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+
 #django_heroku.settings(locals())
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
