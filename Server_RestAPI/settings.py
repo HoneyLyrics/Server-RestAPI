@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lyrics.apps.LyricsConfig',
-    'corsheaders'
+    'corsheaders',
     'common.apps.CommonConfig',
     'rest_framework',
     'corsheaders',
