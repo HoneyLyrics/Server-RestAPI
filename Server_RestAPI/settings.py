@@ -44,13 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'lyrics.apps.LyricsConfig',
-<<<<<<< HEAD
     'corsheaders'
-=======
     'common.apps.CommonConfig',
     'rest_framework',
     'corsheaders',
->>>>>>> develop
 
 ]
 
@@ -62,11 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-<<<<<<< HEAD
     'corsheaders.middleware.CorsMiddleware',
-=======
     'corsheaders.middleware.CorsMiddleware', # Note that this needs to be placed above CommonMiddleware
->>>>>>> develop
 ]
 
 ROOT_URLCONF = 'Server_RestAPI.urls'
@@ -105,29 +99,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Server_RestAPI.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
+# # Database
+# # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
 #         'NAME': BASE_DIR / 'db.sqlite3',
-#         # 'ENGINE': 'django.db.backends.postgresql',
-#         # 'NAME': 'postgres',
-#         # 'USER': 'root',
-#         # 'PASSOWRD': 'root',
-#         # 'HOST': 'zbkqhoduvlzvps:1aebcd884b28e1eba6c0b89d45c39f9ca5315dbea430579549517fd32e6e7719@ec2-54-91-1eba6c0b89d45c39f9ca5315dbea43057954951188-254.compute-1.amazonaws.com:5432/ddnem67cdfk0if',
-#         # 'PORT': 5432,
-#         # 'CLIENT_ENCODING': 'UTF8',
-#         # 'USE_TZ': 'UTC'
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'root',
+        'PASSOWRD': 'root',
+        'HOST': 'zbkqhoduvlzvps:1aebcd884b28e1eba6c0b89d45c39f9ca5315dbea430579549517fd32e6e7719@ec2-54-91-1eba6c0b89d45c39f9ca5315dbea43057954951188-254.compute-1.amazonaws.com:5432/ddnem67cdfk0if',
+        'PORT': 5432,
+        'CLIENT_ENCODING': 'UTF8',
+        'USE_TZ': 'UTC'
+    }
+}
 
 
 # Password validation
@@ -177,5 +169,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-#django_heroku.settings(locals())
-#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+django_heroku.settings(locals())
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
