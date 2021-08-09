@@ -112,7 +112,7 @@ DATABASES = {
         'NAME': 'postgres',
         'USER': 'root',
         'PASSOWRD': 'root',
-        'HOST': 'zbkqhoduvlzvps:1aebcd884b28e1eba6c0b89d45c39f9ca5315dbea430579549517fd32e6e7719@ec2-54-91-1eba6c0b89d45c39f9ca5315dbea43057954951188-254.compute-1.amazonaws.com:5432/ddnem67cdfk0if',
+        'HOST': 'postgres://zbkqhoduvlzvps:1aebcd884b28e1eba6c0b89d45c39f9ca5315dbea430579549517fd32e6e7719@ec2-54-91-188-254.compute-1.amazonaws.com:5432/ddnem67cdfk0if',
         'PORT': 5432,
         'CLIENT_ENCODING': 'UTF8',
         'USE_TZ': 'UTC'
@@ -167,5 +167,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-#django_heroku.settings(locals())
-#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+django_heroku.settings(locals())
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
