@@ -31,7 +31,7 @@ class RegisterView(GenericAPIView):
                 return Response({'username':serializer.data['username']}, status=status.HTTP_200_OK)
             return Response({'error':'already exists'}, status=status.HTTP_409_CONFLICT)
         except Exception as e:
-            return Response({'error':e}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'error':str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
  
 
 class LoginView(GenericAPIView):
