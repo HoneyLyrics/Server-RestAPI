@@ -3,6 +3,7 @@ from django.http.response import HttpResponse
 from lyrics.models import SongInfo, Lyrics, Mood, SongMood
 import json
 from django.db.models import Q
+from django.middleware import csrf
 
 
 class Song(View):
@@ -43,20 +44,23 @@ class Crawler(View):
         returns:
             HttpResponse
     """
+    def get(self, request):
+        csrf.get_token(request)
+        return HttpResponse('hello', content_type="application/json")
+
     def post(self, request):
-        data = json.loads(request.body)
+        data = json.loads(request.POST['data'])
         # TODO Data predict code 넣기
         for song_info in data:
-            song = SongInfo(songId=song_info['songId'],
-                            title=song_info['title'],
-                            artist=song_info['artists'],
-                            imgURL=song_info['imgUrl'],
-                            mood1=Mood.objects.get(moodId=song_info['mood1']),
-                            mood2=Mood.objects.get(moodId=song_info['mood2']),
-                            mood3=Mood.objects.get(moodId=song_info['mood3']),
-                            )
-            lyric = Lyrics(songId=SongInfo.objects.get(songId=song_info['songId']), 
-                           content=song_info['lyrics'])
+            song = SongInfo()
+            song.songId = int(song_info['songId'])
+            song.title = song_info['title']
+            song.artist = song_info['artists']
+            song.imgURL = song_info['imgUrl']
+
+            lyric = Lyrics()
+            lyric.songId = SongInfo.objects.get(songId=song_info['songId'])
+            lyric.content = song_info['lyrics']
             song.save()
             lyric.save()
         return HttpResponse("OK")
