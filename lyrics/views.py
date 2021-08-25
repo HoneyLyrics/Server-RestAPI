@@ -57,11 +57,10 @@ class Crawler(View):
             song.title = song_info['title']
             song.artist = song_info['artists']
             song.imgURL = song_info['imgUrl']
-
+            song.save()
             lyric = Lyrics()
             lyric.songId = SongInfo.objects.get(songId=song_info['songId'])
             lyric.content = song_info['lyrics']
-            song.save()
             lyric.save()
         return HttpResponse("OK")
 
