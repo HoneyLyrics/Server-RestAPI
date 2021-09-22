@@ -53,7 +53,7 @@ class LoginView(GenericAPIView):
                 data = {'username': serializers.data.get('username')}
                 response = Response(data, status=status.HTTP_200_OK)
                 response.set_cookie('access_token',auth_token)
-                print("[DEBUG], LOGIN", response['access_token'])
+                print("[DEBUG], LOGINs", response['access_token'])
                 return response
             return Response({'username': username, 'error': 'wrong password'}, status=status.HTTP_401_UNAUTHORIZED)
         except Exception as e:
