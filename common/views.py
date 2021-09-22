@@ -89,7 +89,7 @@ class Check(GenericAPIView):
             HTTP Response
     """
     def get(self, request):
-        print(request)
+        print("[DEBUG] GRANTED", request)
         try:
             if request.COOKIES:
                 session_id = request.headers['Cookie'].split('=')[1]
@@ -97,7 +97,8 @@ class Check(GenericAPIView):
                                   algorithm="HS256")
                 return Response(data, status=status.HTTP_200_OK)
             else:
-                data = {'error':'unauthorized error'}
+                data = {'error': 'unauthorized error'}
+                print("[DEBUG] ERROR: UNAUTHORIZED ERROR")
                 return Response(data, status=status.HTTP_401_UNAUTHORIZED)
         except Exception as e:
             data = json.dumps({'error': str(e)}, ensure_ascii=False).encode('utf-8')
