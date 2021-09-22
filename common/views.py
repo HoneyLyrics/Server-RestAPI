@@ -90,7 +90,7 @@ class Check(GenericAPIView):
             HTTP Response
     """
     def get(self, request):
-        print("[DEBUG] GRANTED", request)
+        print("[DEBUG] GRANTED", request.headers.get('Cookie', None))
         try:
             if request.COOKIES:
                 session_id = request.headers['Cookie'].split('=')[1]
