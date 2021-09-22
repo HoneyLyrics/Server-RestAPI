@@ -89,6 +89,7 @@ class Check(GenericAPIView):
             HTTP Response
     """
     def get(self, request):
+        print(request)
         try:
             if request.COOKIES:
                 session_id = request.headers['Cookie'].split('=')[1]
