@@ -49,10 +49,11 @@ class LoginView(GenericAPIView):
                 # TODO change SECRET KEY
                 auth_token = jwt.encode(
                     {'username': username}, settings.SECRET_KEY, algorithm="HS256").decode('utf-8')
-                serializers = UserSerializer(user)
+                serializers = UserSerializer(user)  
                 data = {'username': serializers.data.get('username')}
                 response = Response(data, status=status.HTTP_200_OK)
                 response.set_cookie('access_token',auth_token)
+                print("[DEBUG], LOGIN", response)
                 return response
             return Response({'username': username, 'error': 'wrong password'}, status=status.HTTP_401_UNAUTHORIZED)
         except Exception as e:
