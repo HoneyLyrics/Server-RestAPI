@@ -167,6 +167,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 django_heroku.settings(locals())
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
