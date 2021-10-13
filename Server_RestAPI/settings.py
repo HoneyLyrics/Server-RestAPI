@@ -165,7 +165,8 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
 
 django_heroku.settings(locals())
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
