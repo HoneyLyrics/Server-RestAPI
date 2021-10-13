@@ -54,6 +54,7 @@ class LoginView(GenericAPIView):
                 response = Response(data, status=status.HTTP_200_OK)
                 response.set_cookie('access_token', auth_token,
                                     domain='honey-lyrics.web.app')
+                response['Cache-Control'] = 'private'
                 print("[DEBUG] LOGINs", response.headers)
                 return response
             return Response({'username': username, 'error': 'wrong password'}, status=status.HTTP_401_UNAUTHORIZED)
@@ -77,6 +78,7 @@ class Logout(GenericAPIView):
                 response = Response(data, status=status.HTTP_200_OK)
                 response.set_cookie('access_token', session_id, expires=0,
                                     domain='honey-lyrics.web.app')
+                response['Cache-Control'] = 'private'
                 return response
             else:
                 return Response(status=status.HTTP_200_OK)
@@ -102,6 +104,7 @@ class Check(GenericAPIView):
             else:
                 data = {'error': 'unauthorized error'}
                 print("[DEBUG] ERROR: UNAUTHORIZED ERROR")
+                
                 return Response(data, status=status.HTTP_401_UNAUTHORIZED)
         except Exception as e:
             data = json.dumps({'error': str(e)}, ensure_ascii=False).encode('utf-8')
