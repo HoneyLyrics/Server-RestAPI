@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import datetime
 from django.contrib.auth.models import User
 from django.views import View
 from django.http.response import HttpResponse, ResponseHeaders
@@ -51,9 +52,12 @@ class LoginView(GenericAPIView):
                     {'username': username}, settings.SECRET_KEY, algorithm="HS256").decode('utf-8')
                 serializers = UserSerializer(user)
                 data = {'username': serializers.data.get('username')}
+                tomorrow = datetime.datetime.now() + datetime.timedelta(days = 1)
+                tomorrow = datetime.datetime.replace(tomorrow, hour=0, minute=0, second=0)
+                expires = datetime.datetime.strftime(tomorrow, "%a, %d-%b-%Y %H:%M:%S GMT")
                 response = Response(data, status=status.HTTP_200_OK)
                 response.set_cookie('access_token', auth_token,
-                                    domain='.web.app')
+                                    domain='.web.app', expires=expires)
                 response['Cache-Control'] = 'private'
                 print("[DEBUG] LOGINs", response.headers)
                 return response
