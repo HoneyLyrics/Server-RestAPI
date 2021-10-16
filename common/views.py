@@ -58,7 +58,7 @@ class LoginView(GenericAPIView):
                 response = Response(data, status=status.HTTP_200_OK)
                 response.set_cookie('access_token', auth_token,
                                     domain='.web.app', expires=expires,
-                                    secure=True, samesite=None)
+                                    secure=True, samesite='None')
                 response['Cache-Control'] = 'private'
                 print("[DEBUG] LOGINs", response.headers)
                 return response
