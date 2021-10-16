@@ -57,7 +57,7 @@ class LoginView(GenericAPIView):
                 expires = datetime.datetime.strftime(tomorrow, "%a, %d-%b-%Y %H:%M:%S GMT")
                 response = Response(data, status=status.HTTP_200_OK)
                 response.set_cookie('access_token', auth_token,
-                                    domain='.herokuapp.com', expires=expires,
+                                    domain='honeylyrics.herokuapp.com ', expires=expires,
                                     secure=True, samesite='None')
                 response['Cache-Control'] = 'private'
                 print("[DEBUG] LOGINs", response.headers)
