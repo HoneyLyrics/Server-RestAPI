@@ -53,7 +53,7 @@ class LoginView(GenericAPIView):
                 data = {'username': serializers.data.get('username')}
                 response = Response(data, status=status.HTTP_200_OK)
                 response.set_cookie('access_token', auth_token,
-                                    domain='honey-lyrics.web.app')
+                                    domain='.web.app')
                 response['Cache-Control'] = 'private'
                 print("[DEBUG] LOGINs", response.headers)
                 return response
