@@ -52,8 +52,8 @@ class LoginView(GenericAPIView):
                 serializers = UserSerializer(user)
                 data = {'username': serializers.data.get('username')}
                 response = Response(data, status=status.HTTP_200_OK)
-                response.set_cookie('access_token', auth_token,
-                                    domain='.web.app')
+                response.set_cookie('access_token', auth_token)
+                                    #domain='.web.app')
                 response['Cache-Control'] = 'private'
                 print("[DEBUG] LOGINs", response.headers)
                 return response
