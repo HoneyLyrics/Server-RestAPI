@@ -30,8 +30,10 @@ SECRET_KEY = 'django-insecure-%%v4@wgezj3q40)cs__#3$h$=y5n(4eyzk5xit1-(15(0bkm(9
 DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','192.168.43.25', '192.168.0.89', '192.168.0.4','honeylyrics.herokuapp.com', 'honey-lyrics.web.app']
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_HEADERS = [ "accept", "accept-encoding", "authorization", "content-type", "dnt", "origin", "user-agent", "x-csrftoken", "x-requested-with" ]
+CORS_ALLOW_METHODS = ["GET","POST"]
 CORS_ORIGIN_WHITELIST = ['https://honey-lyrics.web.app']
 
 # Application definition
@@ -168,6 +170,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_COOKIE_SAMESITE = None
 SESSION_COOKIE_SAMESITE = None
 CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+
 SESSION_COOKIE_SECURE = True
 
 django_heroku.settings(locals())
