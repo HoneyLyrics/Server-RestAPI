@@ -102,6 +102,7 @@ class Check(GenericAPIView):
         print("[DEBUG] GRANTED", request.headers.get('Cookie', None))
         try:
             if request.COOKIES:
+                print("[DEBUG]", request.COOKIES)
                 session_id = request.headers['Cookie'].split('=')[1]
                 data = jwt.decode(session_id, settings.SECRET_KEY,
                                   algorithm="HS256")
